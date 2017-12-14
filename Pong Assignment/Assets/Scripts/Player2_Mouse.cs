@@ -10,7 +10,7 @@ public class Player2_Mouse : MonoBehaviour {
 
     private Rigidbody2D P2_RB;
 
-    private float BoundaryY = 3.7f;
+    private float BoundaryY = 3.125f;
 
     void Start ()
     {
@@ -24,10 +24,10 @@ public class Player2_Mouse : MonoBehaviour {
 	void Update ()
     { 
         // Declaring the Player2 position
-        float PlayerPosInUnits = (Input.mousePosition.y / Screen.height * 13f)-6.5f;
+        float PlayerPosInUnits = (Input.mousePosition.y / Screen.height * 15.6f)-7.8f;
 
         //Declaring the x, y, z positions
-        Vector3 PlayerPosition = new Vector3(8.56f, PlayerPosInUnits, this.transform.position.x);
+        Vector3 PlayerPosition = new Vector3(5.6f, PlayerPosInUnits, this.transform.position.x);
 
         //Getting the position and storing it into variable named PlayerPosition
         this.transform.position = PlayerPosition;
