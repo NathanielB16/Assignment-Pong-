@@ -9,12 +9,12 @@ public class Ball : MonoBehaviour {
 
     void Start () {
 
-        Ball_RB = this.GetComponent<Rigidbody2D>();
+        StartCoroutine(PausePeriodAfterGoal());
 
+        Ball_RB = this.GetComponent<Rigidbody2D>();
+        
         //Setting the initial velocity of the ball
         Ball_RB.velocity = new Vector2(6f, 6f);
-
-        StartCoroutine(Pause());
 
     }
 	
@@ -22,14 +22,37 @@ public class Ball : MonoBehaviour {
 
         if (this.transform.position.x >= 7.8f)
         {
-            this.transform.position = new Vector3(0f, 0f, 0f);
+            StartCoroutine(PausePeriodAfterGoal());
         }
         if (this.transform.position.x <= -7.8f)
         {
-            this.transform.position = new Vector3(0f, 0f, 0f);
+            StartCoroutine(PausePeriodAfterGoal());
         }
 
-        StartCoroutine(Pause());
+    }
+
+    void BallLaunchAfterGoal()
+    {
+
+        this.transform.position = new Vector3(0f, 0f, 0f);
+
+        int DirX = Random.Range(-1, 2);
+        int DirY = Random.Range(-1, 2);
+
+
+        if (DirX == 0)
+        {
+            DirX = 1;
+        }
+
+        Ball_RB.velocity = new Vector2(7f * DirX, 7f * DirY);
+    }
+
+    IEnumerator PausePeriodAfterGoal()
+    {
+        yield return new WaitForSeconds(2f);
+
+        BallLaunchAfterGoal();
 
     }
 
@@ -80,65 +103,35 @@ public class Ball : MonoBehaviour {
 
         }
 
-        //If ball hits Player 1 (left Player)
         if (Coll.gameObject.name == "P1")
         {
+            Ball_RB.velocity = new Vector3(13f, 8f, 8f);
 
-            //Direct Collision
-            Ball_RB.velocity = new Vector3(13f, 0f, 0f);
-
-            //Lowe Paddle Collision
             if (transform.position.y - Coll.gameObject.transform.position.y < -0.7)
             {
                 Ball_RB.velocity = new Vector3(8f, -8f, 0f);
             }
 
-            //Upper Paddle Collision
-            if (transform.position.y - Coll.gameObject.transform.position.y > 0.5)
+            if (transform.position.y - Coll.gameObject.transform.position.y > 0.6)
             {
                 Ball_RB.velocity = new Vector3(8f, 8f, 0f);
             }
-
         }
 
-        //If ball hits Player 1 (right Player)
         if (Coll.gameObject.name == "P2")
         {
-
-            //Direct Collision
             Ball_RB.velocity = new Vector3(-13f, 0f, 0f);
 
-            //Lower Paddle Collision
             if (transform.position.y - Coll.gameObject.transform.position.y < -0.7)
             {
                 Ball_RB.velocity = new Vector3(-8f, -8f, 0f);
             }
 
-            //Upper Paddle Collision
-            if (transform.position.y - Coll.gameObject.transform.position.y > 0.5)
+            if (transform.position.y - Coll.gameObject.transform.position.y > 0.6)
             {
                 Ball_RB.velocity = new Vector3(-8f, 8f, 0f);
             }
-
         }
-
-    }
-
-    IEnumerator Pause()
-    {
-
-        int DirX = Random.Range(-1, 2);
-        int DirY = Random.Range(-1, 2);
-
-
-        if (DirX == 0)
-        {
-            DirX = 1;
-        }
-
-        Ball_RB.velocity = new Vector2(0f, 0f);
-        yield return new WaitForSeconds(2);
-        Ball_RB.velocity = new Vector2(7f * DirX, 7f * DirY);
 
     }
 
