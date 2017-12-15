@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreCount : MonoBehaviour {
@@ -12,6 +13,7 @@ public class ScoreCount : MonoBehaviour {
 
     public int P1_Score;
     public int P2_Score;
+    public int Max_Points = 3;
 
 
     void Start () {
@@ -25,7 +27,10 @@ public class ScoreCount : MonoBehaviour {
 	
 	
 	void Update () {
-		
+		if(P1_Score >= Max_Points || P2_Score >= Max_Points)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }
 	}
 
     public void P1_Point()
