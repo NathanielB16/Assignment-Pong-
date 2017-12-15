@@ -22,10 +22,16 @@ public class Ball : MonoBehaviour {
 
         if (this.transform.position.x >= 7.8f)
         {
+            this.transform.position = new Vector3(0f, 0f, 0f);
+            Ball_RB.velocity = new Vector3(0f, 0f, 0f);
+            ScoreCount.instance.P1_Point();
             StartCoroutine(PausePeriodAfterGoal());
         }
         if (this.transform.position.x <= -7.8f)
         {
+            this.transform.position = new Vector3(0f, 0f, 0f);
+            Ball_RB.velocity = new Vector3(0f, 0f, 0f);
+            ScoreCount.instance.P2_Point();
             StartCoroutine(PausePeriodAfterGoal());
         }
 
@@ -50,6 +56,7 @@ public class Ball : MonoBehaviour {
 
     IEnumerator PausePeriodAfterGoal()
     {
+        
         yield return new WaitForSeconds(2f);
 
         BallLaunchAfterGoal();
@@ -105,7 +112,7 @@ public class Ball : MonoBehaviour {
 
         if (Coll.gameObject.name == "P1")
         {
-            Ball_RB.velocity = new Vector3(13f, 8f, 8f);
+            Ball_RB.velocity = new Vector3(13f, 0f, 0f);
 
             if (transform.position.y - Coll.gameObject.transform.position.y < -0.7)
             {
