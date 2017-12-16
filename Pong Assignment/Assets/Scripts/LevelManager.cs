@@ -10,10 +10,14 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(LevelName);
     }
 
-    public void QuitGame()
+    public void Quit_Game()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+ 
+        SceneManager.LoadScene(0);
+
     }
+
+
 
     public void LoadTheNextLevel()
     {
