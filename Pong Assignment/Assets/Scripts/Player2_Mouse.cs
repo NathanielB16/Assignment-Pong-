@@ -6,18 +6,18 @@ public class Player2_Mouse : MonoBehaviour {
 
     //Declaring three variables that can only be used in this script
 
-    private float speed;
+    private float speed; //Declaring a float variable
 
-    private Rigidbody2D P2_RB;
+    private Rigidbody2D P2_RB; //Declaring a variable that can only be used here
 
-    private float BoundaryY = 3.125f;
+    private float BoundaryY = 3.125f; //Initialising boundaryY value to float 3.125
 
     void Start ()
     {
 
-        P2_RB = this.GetComponent<Rigidbody2D>();
+        P2_RB = this.GetComponent<Rigidbody2D>(); //Getting the rigidbody 2d component and storing it into variable
 
-        speed = 5;
+        speed = 5; //Setting the value for speed to 5
 		
 	}
 
@@ -32,13 +32,13 @@ public class Player2_Mouse : MonoBehaviour {
         //Getting the position and storing it into variable named PlayerPosition
         this.transform.position = PlayerPosition;
 
-        var Position = transform.position;
+        var Position = transform.position; //Position is = to position movement
 
-        if (Position.y > BoundaryY)
+        if (Position.y > BoundaryY) //Stops when mouse goes to the top of screen
         {
             Position.y = BoundaryY;
         }
-        else if (Position.y < -BoundaryY)
+        else if (Position.y < -BoundaryY) //Stops when mouse goes to the bottom of screen
         {
             Position.y = -BoundaryY;
         }

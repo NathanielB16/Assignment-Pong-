@@ -10,14 +10,13 @@ public class Obstacles_Controller : MonoBehaviour {
 
     public Transform Starting_Pt;
 
-    public Transform[] points;
+    public Transform[] points; //Declaring an array called points
 
     public int Pt_Choice;
 
 	void Start () {
 
-        Starting_Pt = points[Pt_Choice];
-		
+        Starting_Pt = points[Pt_Choice]; //Putting Pt_Choice into the points array
 	}
 	
 	void Update () {
@@ -27,16 +26,16 @@ public class Obstacles_Controller : MonoBehaviour {
         if (Obstacle.transform.position == Starting_Pt.position)
         {
 
-            Pt_Choice++;
+            Pt_Choice++; //Incrementing Pt_Choice by 1
 
             if (Pt_Choice == points.Length)
             {
 
-                Pt_Choice = 0;
+                Pt_Choice = 0; //Setting Pt_Choice to 0
 
             }
 
-            Starting_Pt = points[Pt_Choice]; 
+            Starting_Pt = points[Pt_Choice]; //Putting Pt_Choice into the points array
         }
 	}
 }
